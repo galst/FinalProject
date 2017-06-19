@@ -33,3 +33,42 @@ fb_oauth <- fbOAuth(app_id, app_secret)
 access_token <- "EAADICANevcYBALERIpywyS123q2x3YZBNBU9Wr2jR4ZA8Vsh5aQTWtngZAsIZAMi8zFRroGCEVkJBI9ab1ZBpLws3KYrxQhnVZB4DDm6yML9vZCDHAb4HJZACgZAjUca67Jyl3t7klRQfNRUMuYp8oldMeLKzPZAhucyCXscZD"
 ```
 * The ids shown above are fake ids and not the real ids we used (in order to refrain from privacy issues)
+
+
+Now that we set up our credenentials we can move on to retrieving the data. We picked five different public figures and used the API to get their latest posts:
+
+```r
+cristiano_page <- getPage(page="Cristiano", token=access_token, n=100)
+cristiano_message <- cristiano_page$message
+
+write.csv(cristiano_message, file="cristiano.csv")
+
+messi_page <- getPage(page="LeoMessi", token=access_token, n=100)
+messi_message <- messi_page$message
+
+write.csv(messi_message, file="messi.csv")
+
+beyonce_page <- getPage(page="beyonce", token=access_token, n=100)
+beyonce_message <- beyonce_page$message
+
+write.csv(beyonce_message, file="beyonce.csv")
+
+hillary_page <- getPage(page="hillaryclinton", token=access_token, n=100)
+hillary_message <- hillary_page$message
+
+write.csv(hillary_message, file="hillary.csv")
+
+federer_page <- getPage(page="Federer", token=access_token, n=100)
+federer_message <- federer_page$message
+
+write.csv(federer_message, file="federer.csv")
+```
+#### Fetching the data from Facebook
+Now that we have the raw data we can move on to cleaning it a bit
+The cleaning that we performed met the following criteria:
+- 
+- 
+-
+
+
+
