@@ -13,7 +13,6 @@ The process of phase 1 will be the following:
 4. Save the dataset to the disk
 
 
-
 #### Fetching the data from Facebook
 
 Here we wrote an R script that uses 'Rfacebook' package in order to access the Facebook API.
@@ -64,8 +63,10 @@ federer_message <- federer_page$message
 write.csv(federer_message, file="federer.csv")
 ```
 #### Fetching the data from Facebook
+
 Now that we have the raw data we can move on to cleaning it a bit
 The cleaning that we performed met the following criteria:
+
 - 
 - 
 -
