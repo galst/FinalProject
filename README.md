@@ -135,8 +135,6 @@ wordcloud(words=d$word, freq=d$freq, min.freq=1, max.words=200, random.order=FAL
 ![](img/hilary-cloud.PNG)
 
 
-<img src="https://github.com/galst/FinalProject/tree/master/img/hilary-cloud.PNG" width="200">
-
 - Trump:
 ![](img/trump-cloud100.PNG)
 
