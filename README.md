@@ -129,11 +129,11 @@ Now that we have a sense we have a good sense of the most common words for each 
 
 
 - Ronaldo
-![](images/cristiano-graph.PNG)
+![](img/cristiano-graph.PNG)
 
 
 - Gates
-![](images/gates-graph.PNG)
+![](img/gates-graph.PNG)
 
 
 When taking a look at these graph it is interesting to see to how the there are common (central) words for all the figures on one hand, while on the other hand we see that there are some posts that have totaly different words with totaly different weights and importance.
@@ -166,8 +166,8 @@ We use it here to detect words close to each other or words which could possibly
 
 
 - Ronaldo
-![](images/cristiano-clusteredgebetweenness.PNG)
+![](img/cristiano-clusteredgebetweenness.PNG)
 
 
 - Gates
-![](images/gates-clusteredgebetweenness.PNG)
+![](img/gates-clusteredgebetweenness.PNG)
