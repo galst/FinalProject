@@ -82,7 +82,7 @@ In total we have posts for five different figures, and our final goal is to buil
 
 
 - Hillary:
-![](img/hilary-cloud.PNG)
+![](img/hilary-cloud.PNG| width=25)
 
 
 - Trump:
