@@ -77,6 +77,8 @@ Now we would like to explore the data that we have a bit more.
 In total we have posts for five different figures, and our final goal is to build a predictor for a new post for each of these figures. Let's try and take a look at the popular words for each figure to get a high level understanding of the common words for each:
 
 - Hillary:
+<img src="https://github.com/galst/FinalProject/img/hilary-cloud.PNG" width="48">
+
 ![](img/hilary-cloud.PNG)
 
 - Trump:
