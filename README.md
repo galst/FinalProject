@@ -82,8 +82,10 @@ In total we have posts for five different figures, and our final goal is to buil
 
 
 - Hillary:
-![](img/hilary-cloud.PNG | width=25)
+![](img/hilary-cloud.PNG)
 
+
+<img src="https://github.com/favicon.ico" width="48">
 
 - Trump:
 ![](img/trump-cloud100.PNG)
