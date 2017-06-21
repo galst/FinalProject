@@ -267,3 +267,9 @@ plot(graph, vertex.color=membership(ceb))
 
 - Gates
 ![](img/gates-clusteredgebetweenness.PNG)
+
+
+By observing these graph we can find some interesting results on our data. This information will help us in phase two by allowing us to traing a better classsifier.
+
+## Phase 2 - Classifier Training
+
