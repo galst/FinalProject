@@ -76,8 +76,13 @@ The cleaning that we performed met the following criteria:
 Now we would like to explore the data that we have a bit more.
 In total we have posts for five different figures, and our final goal is to build a predictor for a new post for each of these figures. Let's try and take a look at the popular words for each figure to get a high level understanding of the common words for each:
 
+```r
+
+```
+
+
 - Hillary:
-<img src="https://github.com/galst/FinalProject/tree/master/img/hilary-cloud.PNG" width="20" height="20" />
+![](img/hilary-cloud.PNG)
 
 
 - Trump:
@@ -96,9 +101,38 @@ In total we have posts for five different figures, and our final goal is to buil
 ![](images/gates-cloud.PNG)
 
 
+Now that we have a sense we have a good sense of the most common words for each figure, lets translate the data into a graph and calculate some important features of it. By calculating these feature we can have some sense on:
+- The most important words
+- Words appearing next to each
+- Words usually coming together
+- First impression of possible sentences
+- Central words to each post and to each figure
 
 
 
+```r
+
+```
+
+
+- Hillary:
+![](img/hilary-graph.PNG)
+
+
+- Trump:
+![](img/trump-graph.PNG)
+
+
+- Adele
+![](img/adele-graph.PNG)
+
+
+- Ronaldo
+![](images/cristiano-graph.PNG)
+
+
+- Gates
+![](images/gates-graph.PNG)
 
 
 
