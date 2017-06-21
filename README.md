@@ -85,7 +85,7 @@ In total we have posts for five different figures, and our final goal is to buil
 ![](img/hilary-cloud.PNG)
 
 
-<img src="https://github.com/galst/FinalProject/tree/master/img/hilary-cloud.PNG" width="80">
+<img src="https://github.com/galst/FinalProject/tree/master/img/hilary-cloud.PNG" width="200">
 
 - Trump:
 ![](img/trump-cloud100.PNG)
