@@ -62,7 +62,7 @@ federer_message <- federer_page$message
 
 write.csv(federer_message, file="federer.csv")
 ```
-#### Fetching the data from Facebook
+#### Data Cleaning
 
 Now that we have the raw data we can move on to cleaning it a bit
 The cleaning that we performed met the following criteria:
@@ -70,6 +70,37 @@ The cleaning that we performed met the following criteria:
 - 
 - 
 -
+
+#### Dataframe Extractio and Data Exploration
+
+Now we would like to explore the data that we have a bit more.
+In total we have posts for five different figures, and our final goal is to build a predictor for a new post for each of these figures. Let's try and take a look at the popular words for each figure to get a high level understanding of the common words for each:
+
+- Hillary:
+![](img/hilary-cloud.PNG)
+
+- Trump:
+![](img/trump-cloud.PNG)
+
+
+- Adele
+![](img/adele-cloud.PNG)
+
+
+- Ronaldo
+![](images/cristiano-cloud.PNG)
+
+
+- Gates
+![](images/gates-cloud.PNG)
+
+
+
+
+
+
+
+
 
 
 
