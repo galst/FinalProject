@@ -79,7 +79,6 @@ In total we have posts for five different figures, and our final goal is to buil
 - Hillary:
 <img src="https://github.com/galst/FinalProject/img/hilary-cloud.PNG" width="48">
 
-![](img/hilary-cloud.PNG)
 
 - Trump:
 ![](img/trump-cloud.PNG)
