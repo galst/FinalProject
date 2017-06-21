@@ -94,11 +94,11 @@ In total we have posts for five different figures, and our final goal is to buil
 
 
 - Ronaldo
-![](images/cristiano-cloud.PNG)
+![](img/cristiano-cloud.PNG)
 
 
 - Gates
-![](images/gates-cloud.PNG)
+![](img/gates-cloud.PNG)
 
 
 Now that we have a sense we have a good sense of the most common words for each figure, lets translate the data into a graph and calculate some important features of it. By calculating these feature we can have some sense on:
