@@ -101,7 +101,8 @@ In total we have posts for five different figures, and our final goal is to buil
 ![](img/gates-cloud.PNG)
 
 
-Now that we have a sense we have a good sense of the most common words for each figure, lets translate the data into a graph and calculate some important features of it. By calculating these feature we can have some sense on:
+Now that we have a sense we have a good sense of the most common words for each figure, lets translate the data into a graph and calculate some important features of it. We think that looking at the problem as a graph can help us visualize the data better and get to a better understanding of it. By calculating these feature we can have some sense on:
+
 - The most important words
 - Words appearing next to each
 - Words usually coming together
@@ -135,7 +136,38 @@ Now that we have a sense we have a good sense of the most common words for each 
 ![](images/gates-graph.PNG)
 
 
+When taking a look at these graph it is interesting to see to how the there are common (central) words for all the figures on one hand, while on the other hand we see that there are some posts that have totaly different words with totaly different weights and importance.
+
+Through these graphs we can understand the features of each figure and the words he uses together and their ordering as well.
+
+Next we would like to calculate betweeness for each of these figures. Betweeness will help us understand better the importance of each word is in a standard post for each figure. So, when we can understand how much "impact" a specif word will have on our predictor.
+
+
+```r
+
+```
+
+The Edge Betweenness algorithm detects communities by progressively removing edges from the original network. The connected components of the remaining network are the communities. Instead of trying to construct a measure that tells us which edges are the most central to communities, the Edge Betweeness algorithm focuses on edges that are most likely "between" communities. 
+
+We use it here to detect words close to each other or words which could possibly fit together in a post:
 
 
 
+- Hillary:
+![](img/hilary-clusteredgebetweenness.PNG)
 
+
+- Trump:
+![](img/trump-clusteredgebetweenness.PNG.PNG)
+
+
+- Adele
+![](img/adele-clusteredgebetweenness.PNG)
+
+
+- Ronaldo
+![](images/cristiano-clusteredgebetweenness.PNG)
+
+
+- Gates
+![](images/gates-clusteredgebetweenness.PNG)
