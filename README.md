@@ -254,7 +254,7 @@ plot(graph, vertex.color=membership(ceb))
 
 
 - Trump:
-![](img/trump-clusteredgebetweenness.PNG.PNG)
+![](img/trump-clusteredgebetweenness.PNG)
 
 
 - Adele
