@@ -515,7 +515,10 @@ This explains the results we see in the summarizing tables in which the boosting
 
 </br>
 
-##### Note: Algorithm descriptions and comparsions were referenced from: https://en.wikipedia.org/wiki/Main_Page, http://www.chioka.in/which-is-better-boosting-or-bagging/, https://datascience.stackexchange.com/questions/6838/when-to-use-random-forest-over-svm-and-vice-versa
+##### Note: Algorithm descriptions and comparsions were referenced from: </br>
+https://en.wikipedia.org/wiki/Main_Page</br>
+ http://www.chioka.in/which-is-better-boosting-or-bagging/</br> 
+ https://datascience.stackexchange.com/questions/6838/when-to-use-random-forest-over-svm-and-vice-versa
 
 
 
