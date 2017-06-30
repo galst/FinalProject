@@ -405,6 +405,10 @@ mean(ifelse(posts.test$figure != pred.rf, 1, 0))
 ```
 ![](img/randomForest-mean.PNG)
 
+### Conclusion - SVM vs Random Forest </br>
+For a classification problem Random Forest gives you probability of belonging to class. SVM gives you distance to the boundary, you still need to convert it to probability somehow if you need probability. For those problems, where SVM applies, it generally performs better than Random Forest. SVM gives you "support vectors", that is points in each class closest to the boundary between classes. They may be of interest by themselves for interpretation.
+That explains the result where we can see: SVM predicted right ~52.5% while Random Forest predicted right only ~41.5%.
+
 Loading more libraries
 ```r
 
@@ -433,7 +437,7 @@ fit.c50 <- train(figure~ ., posts.train, method="C5.0", metric=metric, trControl
 plot(fit.c50)
 ```
 
-![](img/c50-plot.PNG)
+![](img/c50-plot.png)
 
 - Stochastic Gradient Boosting
 
@@ -444,7 +448,7 @@ fit.gbm <- train(figure~ ., posts.train, method="gbm", metric=metric, trControl=
 plot(fit.gbm)
 ```
 
-![](img/sgb-plot.PNG)
+![](img/sgb-plot.png)
 
 - Boosting Algorithms Summary
 
@@ -454,13 +458,13 @@ boosting_results <- resamples(list(c5.0=fit.c50, gbm=fit.gbm))
 summary(boosting_results)
 ```
 
-![](img/boosting-summary.PNG)
+![](img/boosting-summary.png)
 
 ```r
 dotplot(boosting_results)
 ```
 
-![](img/boosting-summary-plot.PNG)
+![](img/boosting-summary-plot.png)
 
 #### Example of Bagging Algorithms
 
@@ -505,8 +509,14 @@ dotplot(bagging_results)
 
 ![](img/bagging-summary-plot.PNG)
 
-### Comparing the results
-//TODO: compare the results
+### Conclusion - Boosting vs Bagging </br>
+In practice, boosting beats bagging in general, but either bagging and boosting will beat a plain classifier. This is shown in the paper Bagging, Boosting and C4.5 where the author makes comparisons between bagging, boosting and C4.5 over two dozens of datasets, and shows that boosting performs better in most cases.
+This explains the results we see in the summarizing tables in which the boosting algorithms predicted the result slightly better than the bagging algorithms almost in every parameter.
+
+</br>
+
+##### Note: Algorithm descriptions and comparsions were referenced from: https://en.wikipedia.org/wiki/Main_Page, http://www.chioka.in/which-is-better-boosting-or-bagging/, https://datascience.stackexchange.com/questions/6838/when-to-use-random-forest-over-svm-and-vice-versa
+
 
 
 
