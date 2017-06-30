@@ -273,7 +273,7 @@ By observing these graph we can find some interesting results on our data. This 
 
 In this phase of the project we used several classifying algorithms and trained them with 80% of the data in order to predict the 20% left.
 
-####Importing data collected in phase 1
+#### Importing data collected in phase 1
 
 Here we are reading all the data that we collected in the previous phase from a csv file seperated into 3 columns defining id, content (text sequence) and figure (type of text sequence)
 
@@ -285,14 +285,14 @@ library(tm)
 posts = read.csv("<path>/allPosts.csv", stringsAsFactors = F,row.names = 1)
 ```
 
-####Normalizing text
+#### Normalizing text
 
 Now we will transform the data set into a corpus, normalize the text using a series of pre-processing steps:
 
--Switch to lower case
--Remove numbers
--Remove punctuation marks and stopwords
--Remove extra white spaces
+- witch to lower case
+- Remove numbers
+- Remove punctuation marks and stopwords
+- Remove extra white spaces
 
 ```r-using-package-igraph/#To use the tm package we first transfrom the dataset to a corpus:
 post_corpus = Corpus(VectorSource(posts$content))
@@ -311,7 +311,7 @@ post_corpus = tm_map(post_corpus, removeWords, c("the", "and", stopwords("englis
 post_corpus = tm_map(post_corpus, stripWhitespace)
 ```
 
-####Analyzing the textual data
+#### Analyzing the textual data
 
 In order to analyze the textual data we use DTM representation. after creating a dtm from the corpus we will do a few manipulations and then split to training (80%) and testing (20%) sets.
 
@@ -344,7 +344,7 @@ posts.train = posts[id_train,]
 posts.test = posts[-id_train,]
 ```
 
-####Evaluating performance
+#### Evaluating performance
 
 First we import the relevant libraries
 
@@ -356,7 +356,7 @@ library(e1071)
 
 We ran a few different classifying algorithms. Each once seperated into 2 parts. first part, building the classifier using the training set. second part, predicting the type of the textual sequences from the testing set.
 
--SVM
+- SVM
 Given a set of training examples, each marked as belonging to one or the other of two categories, an SVM training algorithm builds a model that assigns new examples to one category or the other, making it a non-probabilistic binary linear classifier (although methods such as Platt scaling exist to use SVM in a probabilistic classification setting). An SVM model is a representation of the examples as points in space, mapped so that the examples of the separate categories are divided by a clear gap that is as wide as possible. New examples are then mapped into that same space and predicted to belong to a category based on on which side of the gap they fall.
 
 ```r
@@ -380,7 +380,7 @@ mean(ifelse(posts.test$figure != pred.svm, 1, 0))
 ```
 ![](img/svm-mean.PNG)
 
--Random forest
+- Random forest
 Random forests or random decision forests are an ensemble learning method for classification, regression and other tasks, that operate by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees. Random decision forests correct for decision trees' habit of overfitting to their training set.
 ```r
 library(randomForest)
@@ -413,7 +413,7 @@ library(mlbench)
 library(caret)
 library(caretEnsemble)
 ```
-####Example of Boosting Algorithms
+#### Example of Boosting Algorithms
 
 Boosting is a machine learning ensemble meta-algorithm for primarily reducing bias, and also variance in supervised learning, and a family of machine learning algorithms which convert weak learners to strong ones. Boosting is based on the question posed by Kearns and Valiant (1988, 1989) Can a set of weak learners create a single strong learner? A weak learner is defined to be a classifier which is only slightly correlated with the true classification (it can label examples better than random guessing). In contrast, a strong learner is a classifier that is arbitrarily well-correlated with the true classification.
 
@@ -424,7 +424,7 @@ seed <- 7
 metric <- "Accuracy"
 ```
 
--C5.0
+- C5.0
 
 ```r
 # C5.0
@@ -435,7 +435,7 @@ plot(fit.c50)
 
 ![](img/c50-plot.PNG)
 
--Stochastic Gradient Boosting
+- Stochastic Gradient Boosting
 
 ```r
 # Stochastic Gradient Boosting
@@ -446,7 +446,7 @@ plot(fit.gbm)
 
 ![](img/sgb-plot.PNG)
 
--Boosting Algorithms Summary
+- Boosting Algorithms Summary
 
 ```r
 # summarize results
@@ -462,7 +462,7 @@ dotplot(boosting_results)
 
 ![](img/boosting-summary-plot.PNG)
 
-####Example of Bagging Algorithms
+#### Example of Bagging Algorithms
 
 Bootstrap aggregating, also called bagging, is a machine learning ensemble meta-algorithm designed to improve the stability and accuracy of machine learning algorithms used in statistical classification and regression. It also reduces variance and helps to avoid overfitting. Although it is usually applied to decision tree methods, it can be used with any type of method. Bagging is a special case of the model averaging approach.
 
@@ -473,7 +473,7 @@ seed <- 7
 metric <- "Accuracy"
 ```
 
--Bagged CART
+- Bagged CART
 
 ```r
 # Bagged CART
@@ -481,7 +481,7 @@ set.seed(seed)
 fit.treebag <- train(figure~ ., posts.train, method="treebag", metric=metric, trControl=control)
 ```
 
--Random Forest
+- Random Forest
 
 ```r
 # Random Forest
@@ -489,7 +489,7 @@ set.seed(seed)
 fit.rf <- train(figure~ ., posts.train, method="rf", metric=metric, trControl=control)
 ```
 
--Bagging Algorithms Summary
+- Bagging Algorithms Summary
 
 ```r
 # summarize results
@@ -505,7 +505,7 @@ dotplot(bagging_results)
 
 ![](img/bagging-summary-plot.PNG)
 
-###Comparing the results
+### Comparing the results
 //TODO: compare the results
 
 
