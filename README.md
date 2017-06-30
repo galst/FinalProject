@@ -271,3 +271,242 @@ By observing these graph we can find some interesting results on our data. This 
 
 ## Phase 2 - Classifier Training
 
+In this phase of the project we used several classifying algorithms and trained them with 80% of the data in order to predict the 20% left.
+
+####Importing data collected in phase 1
+
+Here we are reading all the data that we collected in the previous phase from a csv file seperated into 3 columns defining id, content (text sequence) and figure (type of text sequence)
+
+```r
+library(tm)
+
+#First install and load packages needed for text mining.
+
+posts = read.csv("<path>/allPosts.csv", stringsAsFactors = F,row.names = 1)
+```
+
+####Normalizing text
+
+Now we will transform the data set into a corpus, normalize the text using a series of pre-processing steps:
+
+-Switch to lower case
+-Remove numbers
+-Remove punctuation marks and stopwords
+-Remove extra white spaces
+
+```r-using-package-igraph/#To use the tm package we first transfrom the dataset to a corpus:
+post_corpus = Corpus(VectorSource(posts$content))
+
+post_corpus
+
+#Next we normalize the texts in the post using a series of pre-processing steps
+#Switch to lower case 
+#Remove numbers
+#Remove punctuation marks and stopwords
+#Remove extra whitespaces
+post_corpus = tm_map(post_corpus, content_transformer(tolower))
+post_corpus = tm_map(post_corpus, removeNumbers)
+post_corpus = tm_map(post_corpus, removePunctuation)
+post_corpus = tm_map(post_corpus, removeWords, c("the", "and", stopwords("english")))
+post_corpus = tm_map(post_corpus, stripWhitespace)
+```
+
+####Analyzing the textual data
+
+In order to analyze the textual data we use DTM representation. after creating a dtm from the corpus we will do a few manipulations and then split to training (80%) and testing (20%) sets.
+
+```
+#To analyze the textual data, we use a Document-Term Matrix (DTM) representation: 
+post_dtm <- DocumentTermMatrix(post_corpus)
+post_dtm
+
+inspect(post_dtm[50:55, 50:55])
+
+#To reduce the dimension of the DTM, we can remove the less frequent terms such that the sparsity is less than
+#0.99
+post_dtm = removeSparseTerms(post_dtm, 0.99)
+post_dtm
+
+post_dtm_tfidf <- DocumentTermMatrix(post_corpus, control = list(weighting = weightTfIdf))
+post_dtm_tfidf = removeSparseTerms(post_dtm_tfidf, 0.95)
+
+post_dtm_tfidf
+
+#Let’s remove the actual texual content for statistical model building
+posts$content = NULL
+#Now we can combine the tf-idf matrix with the sentiment figure according to the sentiment lists.
+posts = cbind(posts, as.matrix(post_dtm_tfidf))
+posts$figure = as.factor(posts$figure)
+
+#Split to testing and training set
+id_train <- sample(nrow(posts),nrow(posts)*0.80)
+posts.train = posts[id_train,]
+posts.test = posts[-id_train,]
+```
+
+####Evaluating performance
+
+First we import the relevant libraries
+
+```r
+library(rpart)
+library(rpart.plot)
+library(e1071)
+```
+
+We ran a few different classifying algorithms. Each once seperated into 2 parts. first part, building the classifier using the training set. second part, predicting the type of the textual sequences from the testing set.
+
+-SVM
+Given a set of training examples, each marked as belonging to one or the other of two categories, an SVM training algorithm builds a model that assigns new examples to one category or the other, making it a non-probabilistic binary linear classifier (although methods such as Platt scaling exist to use SVM in a probabilistic classification setting). An SVM model is a representation of the examples as points in space, mapped so that the examples of the separate categories are divided by a clear gap that is as wide as possible. New examples are then mapped into that same space and predicted to belong to a category based on on which side of the gap they fall.
+
+```r
+#svm
+posts.svm = svm(figure~ ., data = posts.train);
+pred.svm = predict(posts.svm, posts.test)
+```
+
+```r 
+table(posts.test$figure,pred.svm,dnn=c("Obs","Pred"))
+```
+![](img/svm-table.PNG)
+
+```r 
+plot(pred.svm)
+```
+![](img/svm-plot.PNG)
+
+```r 
+mean(ifelse(posts.test$figure != pred.svm, 1, 0))
+```
+![](img/svm-mean.PNG)
+
+-Random forest
+Random forests or random decision forests are an ensemble learning method for classification, regression and other tasks, that operate by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees. Random decision forests correct for decision trees' habit of overfitting to their training set.
+```r
+library(randomForest)
+#random forest
+posts.rf = randomForest(figure~ ., data = posts.train, importance=TRUE)
+plot(posts.rf)
+pred.rf= predict(posts.rf,posts.test)
+```
+
+```r 
+table(posts.test$figure,pred.svm,dnn=c("Obs","Pred"))
+```
+![](img/randomForest-table.PNG)
+
+```r 
+plot(pred.rf)
+```
+![](img/randomForest-plot.PNG)
+
+```r 
+mean(ifelse(posts.test$figure != pred.rf, 1, 0))
+```
+![](img/randomForest-mean.PNG)
+
+Loading more libraries
+```r
+
+# Load libraries
+library(mlbench)
+library(caret)
+library(caretEnsemble)
+```
+####Example of Boosting Algorithms
+
+Boosting is a machine learning ensemble meta-algorithm for primarily reducing bias, and also variance in supervised learning, and a family of machine learning algorithms which convert weak learners to strong ones. Boosting is based on the question posed by Kearns and Valiant (1988, 1989) Can a set of weak learners create a single strong learner? A weak learner is defined to be a classifier which is only slightly correlated with the true classification (it can label examples better than random guessing). In contrast, a strong learner is a classifier that is arbitrarily well-correlated with the true classification.
+
+```r 
+# Example of Boosting Algorithms
+control <- trainControl(method="repeatedcv", number=10, repeats=3)
+seed <- 7
+metric <- "Accuracy"
+```
+
+-C5.0
+
+```r
+# C5.0
+set.seed(seed)
+fit.c50 <- train(figure~ ., posts.train, method="C5.0", metric=metric, trControl=control)
+plot(fit.c50)
+```
+
+![](img/c50-plot.PNG)
+
+-Stochastic Gradient Boosting
+
+```r
+# Stochastic Gradient Boosting
+set.seed(seed)
+fit.gbm <- train(figure~ ., posts.train, method="gbm", metric=metric, trControl=control, verbose=FALSE)
+plot(fit.gbm)
+```
+
+![](img/sgb-plot.PNG)
+
+-Boosting Algorithms Summary
+
+```r
+# summarize results
+boosting_results <- resamples(list(c5.0=fit.c50, gbm=fit.gbm))
+summary(boosting_results)
+```
+
+![](img/boosting-summary.PNG)
+
+```r
+dotplot(boosting_results)
+```
+
+![](img/boosting-summary-plot.PNG)
+
+####Example of Bagging Algorithms
+
+Bootstrap aggregating, also called bagging, is a machine learning ensemble meta-algorithm designed to improve the stability and accuracy of machine learning algorithms used in statistical classification and regression. It also reduces variance and helps to avoid overfitting. Although it is usually applied to decision tree methods, it can be used with any type of method. Bagging is a special case of the model averaging approach.
+
+```r 
+# Example of Bagging algorithms
+control <- trainControl(method="repeatedcv", number=10, repeats=3)
+seed <- 7
+metric <- "Accuracy"
+```
+
+-Bagged CART
+
+```r
+# Bagged CART
+set.seed(seed)
+fit.treebag <- train(figure~ ., posts.train, method="treebag", metric=metric, trControl=control)
+```
+
+-Random Forest
+
+```r
+# Random Forest
+set.seed(seed)
+fit.rf <- train(figure~ ., posts.train, method="rf", metric=metric, trControl=control)
+```
+
+-Bagging Algorithms Summary
+
+```r
+# summarize results
+bagging_results <- resamples(list(treebag=fit.treebag, rf=fit.rf))
+summary(bagging_results)
+```
+
+![](img/bagging-summary.PNG)
+
+```r
+dotplot(bagging_results)
+```
+
+![](img/bagging-summary-plot.PNG)
+
+###Comparing the results
+//TODO: compare the results
+
+
+
