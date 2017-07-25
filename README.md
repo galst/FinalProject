@@ -808,6 +808,7 @@ text3
 ```
 
 Now lets save our output posts to the disk:
+(All input and output files can be found in this repository)
 
 ```
 new_path = 'C:/src/Academy/final/FinalProject/data/trump-output-txt.txt'
@@ -815,3 +816,7 @@ new_file = open(new_path,'w')
 new_file.write(text3)
 new_file.close()
 ```
+
+## Phase 4 - Classifying the posts
+
+
