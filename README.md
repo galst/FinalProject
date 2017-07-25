@@ -848,6 +848,7 @@ Obs       adele clinton gates ronaldo trump
 
 
 ### Random Forest
+
 ````
          Pred
 Obs       adele clinton gates ronaldo trump
@@ -857,6 +858,7 @@ Obs       adele clinton gates ronaldo trump
   ronaldo     2       0     0      46     0
   trump       1       0     3      13     6
 ```
+
 ![](img/rf.PNG)
 
 ### C5.0 and Stochastic Gradient Boosting
@@ -881,7 +883,3 @@ c5.0 0.1570  0.2423 0.2661 0.2707  0.2936 0.4505    0
 gbm  0.1014  0.2450 0.2879 0.2837  0.3230 0.4327    0
 
 ```
-
-
-
-
