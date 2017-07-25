@@ -857,6 +857,7 @@ Obs       adele clinton gates ronaldo trump
   gates       3       0     1      25     2
   ronaldo     2       0     0      46     0
   trump       1       0     3      13     6
+
 ```
 
 ![](img/rf.PNG)
