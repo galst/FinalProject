@@ -844,7 +844,7 @@ Obs       adele clinton gates ronaldo trump
 [1] 0.56
 ```
 
-![](img/svm.PNG)
+![](img/svm.png)
 
 
 ### Random Forest
@@ -860,14 +860,14 @@ Obs       adele clinton gates ronaldo trump
 
 ```
 
-![](img/rf.PNG)
+![](img/rf.png)
 
 ### C5.0 and Stochastic Gradient Boosting
 
 
-![](img/c50.PNG)
+![](img/c50.png)
 
-![](img/gbm.PNG)
+![](img/gbm.png)
 
 ```
 Models: c5.0, gbm 
