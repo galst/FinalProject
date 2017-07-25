@@ -849,7 +849,7 @@ Obs       adele clinton gates ronaldo trump
 
 ### Random Forest
 
-````
+```
          Pred
 Obs       adele clinton gates ronaldo trump
   adele      13       0     1      11     0
