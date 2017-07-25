@@ -865,7 +865,7 @@ Obs       adele clinton gates ronaldo trump
 ### C5.0 and Stochastic Gradient Boosting
 
 
-![](img/c50.png)
+![](img/C50.png)
 
 ![](img/gbm.png)
 
