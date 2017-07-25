@@ -289,7 +289,7 @@ posts = read.csv("<path>/allPosts.csv", stringsAsFactors = F,row.names = 1)
 
 Now we will transform the data set into a corpus, normalize the text using a series of pre-processing steps:
 
-- witch to lower case
+- Switch to lower case
 - Remove numbers
 - Remove punctuation marks and stopwords
 - Remove extra white spaces
@@ -817,6 +817,71 @@ new_file.write(text3)
 new_file.close()
 ```
 
-## Phase 4 - Classifying the posts
+## Phase 4 - Classifying The Posts
+
+In this phase we will classify our posts using some of the classifiers that we built in the previous phases:
+
+- SVM
+- Random Forest
+- C5.0 and Stochastic Gradient Boosting (Boosting Algorithms)
+
+Our train set will be the original posts that we crawled Facebook to get. Our test set will be the output of Phase 3 - the newly generated posts.
+For each classifier we will show its results.
+
+
+### SVM
+
+```
+         Pred
+Obs       adele clinton gates ronaldo trump
+  adele      13       0     1      11     0
+  clinton     0       0     0      18     5
+  gates       3       0     1      25     2
+  ronaldo     2       0     0      46     0
+  trump       1       0     3      13     6
+> 
+> mean(ifelse(posts.test$figure != pred.svm, 1, 0))
+[1] 0.56
+```
+
+![](img/svm.PNG)
+
+
+### Random Forest
+````
+         Pred
+Obs       adele clinton gates ronaldo trump
+  adele      13       0     1      11     0
+  clinton     0       0     0      18     5
+  gates       3       0     1      25     2
+  ronaldo     2       0     0      46     0
+  trump       1       0     3      13     6
+```
+![](img/rf.PNG)
+
+### C5.0 and Stochastic Gradient Boosting
+
+
+![](img/c50.PNG)
+
+![](img/gbm.PNG)
+
+```
+Models: c5.0, gbm 
+Number of resamples: 30 
+
+Accuracy 
+       Min. 1st Qu. Median   Mean 3rd Qu.   Max. NA's
+c5.0 0.4355  0.4918 0.5081 0.5063  0.5246 0.6129    0
+gbm  0.3710  0.4781 0.5161 0.5073  0.5331 0.5968    0
+
+Kappa 
+       Min. 1st Qu. Median   Mean 3rd Qu.   Max. NA's
+c5.0 0.1570  0.2423 0.2661 0.2707  0.2936 0.4505    0
+gbm  0.1014  0.2450 0.2879 0.2837  0.3230 0.4327    0
+
+```
+
+
 
 
